@@ -1,4 +1,4 @@
- AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 1 - 2020/04/26 12時02分27秒
+ AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 1 - 2020/04/26 15時56分37秒
 
 
        1/       0 :                     ;
@@ -25,61 +25,74 @@
       22/     200 :                             ORG $0200
       23/     200 :                     ;
       24/     200 :                     START:
-      25/     200 : CE 02 33                    LDX  #START_MSG
+      25/     200 : CE 02 4D                    LDX  #START_MSG
       26/     203 : BD FF 98                    JSR  STR_PRINT
       27/     206 :                     ;
       28/     206 : 86 00                       LDAA #$00
-      29/     208 : B7 02 65                    STAA CURRENT_LED
+      29/     208 : B7 02 7F                    STAA CURRENT_LED
       30/     20B :                     ;
       31/     20B :                     LED_LOOP:
-      32/     20B : B6 02 65                    LDAA CURRENT_LED
+      32/     20B : B6 02 7F                    LDAA CURRENT_LED
       33/     20E : B7 80 00                    STAA LED_PORT
-      34/     211 : BD 02 26                    JSR  WAIT
-      35/     214 : B6 02 65                    LDAA CURRENT_LED
+      34/     211 : BD 02 40                    JSR  WAIT
+      35/     214 : B6 02 7F                    LDAA CURRENT_LED
       36/     217 : 4C                          INCA
-      37/     218 : B7 02 65                    STAA CURRENT_LED
+      37/     218 : B7 02 7F                    STAA CURRENT_LED
       38/     21B : 81 10                       CMPA #$10
       39/     21D : 26 EC                       BNE LED_LOOP
       40/     21F :                     ;
-      41/     21F : CE 02 4D                    LDX  #END_MSG
-      42/     222 : BD FF 98                    JSR  STR_PRINT
-      43/     225 : 3F                          SWI                     ; PROGRAM END
-      44/     226 :                     ;
-      45/     226 :                     ; WAIT
-      46/     226 :                     ;
-      47/     226 :                     WAIT:
-      48/     226 : 86 FF                       LDAA    #$FF
-      49/     228 :                     WAIT_LOOP1:
-      50/     228 : C6 FF                       LDAB    #$FF
-      51/     22A :                     WAIT_LOOP2:
-      52/     22A : 01                          NOP
-      53/     22B : 01                          NOP
-      54/     22C : 5A                          DECB
-      55/     22D : 26 FB                       BNE     WAIT_LOOP2
-      56/     22F : 4A                          DECA
-      57/     230 : 26 F6                       BNE     WAIT_LOOP1
-      58/     232 : 39                          RTS
-      59/     233 :                     ;
-      60/     233 :                     ; CINSTANT
- AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 2 - 2020/04/26 12時02分27秒
+      41/     21F : 86 03                       LDAA #$3
+      42/     221 : B7 02 80                    STAA CNT
+      43/     224 :                     ;
+      44/     224 :                     ENDLOOP:
+      45/     224 : 86 00                       LDAA #$00
+      46/     226 : B7 80 00                    STAA LED_PORT
+      47/     229 : BD 02 40                    JSR  WAIT
+      48/     22C : 86 0F                       LDAA #$0F
+      49/     22E : B7 80 00                    STAA LED_PORT
+      50/     231 : BD 02 40                    JSR  WAIT
+      51/     234 : 7A 02 80                    DEC  CNT
+      52/     237 : 26 EB                       BNE  ENDLOOP
+      53/     239 :                     ;
+      54/     239 : CE 02 67                    LDX  #END_MSG
+      55/     23C : BD FF 98                    JSR  STR_PRINT
+      56/     23F : 3F                          SWI                     ; PROGRAM END
+      57/     240 :                     ;
+      58/     240 :                     ; WAIT
+      59/     240 :                     ;
+      60/     240 :                     WAIT:
+ AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 2 - 2020/04/26 15時56分37秒
 
 
-      61/     233 :                     ;
-      62/     233 : 37 34 4C 53 31 37   START_MSG  DC  "74LS173 LED BLINK START",$0D,$0A,$00
+      61/     240 : 86 FF                       LDAA    #$FF
+      62/     242 :                     WAIT_LOOP1:
+      63/     242 : C6 FF                       LDAB    #$FF
+      64/     244 :                     WAIT_LOOP2:
+      65/     244 : 01                          NOP
+      66/     245 : 01                          NOP
+      67/     246 : 5A                          DECB
+      68/     247 : 26 FB                       BNE     WAIT_LOOP2
+      69/     249 : 4A                          DECA
+      70/     24A : 26 F6                       BNE     WAIT_LOOP1
+      71/     24C : 39                          RTS
+      72/     24D :                     ;
+      73/     24D :                     ; CINSTANT
+      74/     24D :                     ;
+      75/     24D : 37 34 4C 53 31 37   START_MSG  DC  "74LS173 LED BLINK START",$0D,$0A,$00
                     33 20 4C 45 44 20 
                     42 4C 49 4E 4B 20 
                     53 54 41 52 54 0D 
                     0A 00             
-      63/     24D : 37 34 4C 53 31 37   END_MSG  DC  "74LS173 LED BLINK END",$0D,$0A,$00
+      76/     267 : 37 34 4C 53 31 37   END_MSG  DC  "74LS173 LED BLINK END",$0D,$0A,$00
                     33 20 4C 45 44 20 
                     42 4C 49 4E 4B 20 
                     45 4E 44 0D 0A 00 
-      64/     265 :                     ;
-      65/     265 :                     ; WORK AREA
-      66/     265 :                     ;
-      67/     265 :                     CURRENT_LED     RMB  1
-      68/     266 :                     
- AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 3 - 2020/04/26 12時02分27秒
+      77/     27F :                     ;
+      78/     27F :                     ; WORK AREA
+      79/     27F :                     ;
+      80/     27F :                     CURRENT_LED     RMB  1
+      81/     280 :                     CNT             RMB  1
+ AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 3 - 2020/04/26 15時56分37秒
 
 
   Symbol Table (* = unused):
@@ -87,8 +100,9 @@
 
 *ARCHITECTURE :    x86_64-apple-osx - | *BIGENDIAN :                      0 - |
 *BRANCHEXT :                      0 - | *CASESENSITIVE :                  0 - |
-*CONSTPI :        3.141592653589793 - |  CURRENT_LED :                  265 C |
-*DATE :                  2020/04/26 - |  END_MSG :                      24D C |
+ CNT :                          280 C | *CONSTPI :        3.141592653589793 - |
+ CURRENT_LED :                  27F C | *DATE :                  2020/04/26 - |
+ ENDLOOP :                      224 C |  END_MSG :                      267 C |
 *FALSE :                          0 - | *FULLPMMU :                       1 - |
 *HAS64 :                          1 - | *HASDSP :                         0 - |
 *HASFPU :                         0 - | *HASPMMU :                        0 - |
@@ -100,17 +114,17 @@
 *MOMCPUNAME :                  6800 - | *NESTMAX :                      100 - |
 *PACKING :                        0 - | *PADDING :                        0 - |
 *RELAXED :                        0 - | *START :                        200 C |
- START_MSG :                    233 C |  STR_PRINT :                   FF98 - |
+ START_MSG :                    24D C |  STR_PRINT :                   FF98 - |
 *TARGET :                    MC6800 - |
-*TIME :                 12\-026\-103\-12602\-027\-120\-12226\-025\-089\-110 - |
+*TIME :                 15\-026\-103\-12656\-027\-120\-12237\-025\-089\-110 - |
 *TRUE :                           1 - | *VERSION :                     142F - |
- WAIT :                         226 C |  WAIT_LOOP1 :                   228 C |
- WAIT_LOOP2 :                   22A C |
+ WAIT :                         240 C |  WAIT_LOOP1 :                   242 C |
+ WAIT_LOOP2 :                   244 C |
 
-     39 symbols
+     41 symbols
      30 unused symbols
 
- AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 4 - 2020/04/26 12時02分27秒
+ AS V1.42 Beta [Bld 162] - Source File LS173-LED.asm - Page 4 - 2020/04/26 15時56分37秒
 
 
   Code Pages:
@@ -120,9 +134,9 @@ STANDARD (0 changed characters)
 
 1 code page
 
-0.15 seconds assembly time
+0.04 seconds assembly time
 
-     68 lines source file
+     81 lines source file
       2 passes
       0 errors
       0 warnings

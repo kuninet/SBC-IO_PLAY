@@ -38,6 +38,19 @@ LED_LOOP:
         CMPA #$10
         BNE LED_LOOP
 ;
+        LDAA #$3
+        STAA CNT
+;
+ENDLOOP:
+        LDAA #$00
+        STAA LED_PORT
+        JSR  WAIT
+        LDAA #$0F
+        STAA LED_PORT
+        JSR  WAIT
+        DEC  CNT
+        BNE  ENDLOOP
+;
         LDX  #END_MSG
         JSR  STR_PRINT
         SWI                     ; PROGRAM END
@@ -65,3 +78,4 @@ END_MSG  DC  "74LS173 LED BLINK END",$0D,$0A,$00
 ; WORK AREA
 ;
 CURRENT_LED     RMB  1
+CNT             RMB  1
