@@ -15,7 +15,7 @@ LED_PORT  EQU  $8000
 ;
 ; Universal Moniter Entry
 ;
-STR_PRINT  EQU  $FF90
+STR_PRINT  EQU  $FF98
 ;
 ; MAIN START
 ;
