@@ -2,6 +2,7 @@
 
 == 概要 ==
 * SBC6800 Adapterを装備したSBC6800ボードとSBC-IOボードを組み合わせたマイコン用のプログラムです。
+* Universal Monitor for SBC6800にて動作確認しています。MIKBUG等でご使用になる場合は適宜変更してご使用ください
 
 == 参考 ==
 * SBC6800ルーズキット
@@ -15,3 +16,7 @@
 * SBC-IO(SBC68系シリーズ用I/Oボード)
 ** SBC 68系シリーズ用のI/Oデバイスボード (パラレル(PIA)、シリアル(ACIA)、タイマー(PTM)とメモリーを搭載)
 ** https://sbc738827564.wordpress.com/2018/08/11/sbc-io-rev02/
+
+* Universal Monitor for SBC6800
+** 各種CPUで稼働する機械語モニター。SBC6800用バイナリあり。
+** https://electrelic.com/electrelic/node/1318
