@@ -1,0 +1,17 @@
+= SBC6800(SBC6800 Adapter)+SBC-IO用プログラム =
+
+== 概要 ==
+* SBC6800 Adapterを装備したSBC6800ボードとSBC-IOボードを組み合わせたマイコン用のプログラムです。
+
+== 参考 ==
+* SBC6800ルーズキット
+** MC6800 CPUとROM/RAM/シリアルを搭載してワンボードマイコンとして楽しめるボード
+** https://vintagechips.wordpress.com/2017/12/05/sbc6800%E3%83%AB%E3%83%BC%E3%82%BA%E3%82%AD%E3%83%83%E3%83%88/
+
+* SBC6800 Adapter
+** SBC6800にSBC6303風バスコネクタを装備する基板
+** https://sbc738827564.wordpress.com/2018/08/11/sbc6800adapter-rev02/
+
+* SBC-IO(SBC68系シリーズ用I/Oボード)
+** SBC 68系シリーズ用のI/Oデバイスボード (パラレル(PIA)、シリアル(ACIA)、タイマー(PTM)とメモリーを搭載)
+** https://sbc738827564.wordpress.com/2018/08/11/sbc-io-rev02/
