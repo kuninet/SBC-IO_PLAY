@@ -1,6 +1,6 @@
 ;
 ; MC6840 PLAY
-;  Universal Minitor for 6502 
+;  Universal Minitor for 6
 ;
 
 	CPU	6800
